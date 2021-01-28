@@ -19,3 +19,12 @@ def hoods(request):
      return render(request, 'all.html', {"new": new, "newpost":newpost, "business":business})  
 
 @login_required(login_url='/accounts/login')
+def hood_details(request,neighbour_id):
+     details=NeighbourHood.get_specific_hood(neighbour_id)
+
+     return render(request,'all.html',{"details":details})
+@login_required(login_url='/accounts/login')
+def bus_details(request,business_id):
+     details1=Business.get_specific_bus(business_id)
+
+     return render(request,'new_business.html',{"details1":details1})
