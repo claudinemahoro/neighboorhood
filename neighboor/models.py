@@ -52,5 +52,18 @@ class Business(models.Model):
         bus = cls.objects.get(id=id)
         return bus
 
+class Post(models.Model):
+    title = models.CharField(max_length=120, null=True)
+    post = models.TextField()
 
+    @classmethod
+    def get_all_posts(cls):
+        posts=cls.objects.all().prefetch_related('comment_set')
+        return posts
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete() 
 
