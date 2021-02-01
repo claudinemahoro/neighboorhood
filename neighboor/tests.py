@@ -6,17 +6,17 @@ from django.contrib.auth.models import User
 
 class ProfileTestClass(TestCase):
     def setUp(self):
-        self.eve = Profile( user = 'eve', profile_picture  = '/', bio = 'my tests', contact='uevelyne44@gmail.com')
+        self.coco = Profile( user = 'coco', profile_picture  = '/', bio = 'my tests', contact='mahorotesting@gmail.com')
 
 # Testing  instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.eve,Profile))
+        self.assertTrue(isinstance(self.coco,Profile))
 
     # Testing Save Method
     def test_save_method(self):
-        self.eve.save_profile()
-        eve = Profile.objects.all()
-        self.assertTrue(len(eve) > 0)
+        self.coco.save_profile()
+        coco = Profile.objects.all()
+        self.assertTrue(len(coco) > 0)
 
     def tearDown(self):
         Profile.objects.all().delete()
@@ -32,7 +32,7 @@ class Neighbourhood(TestCase):
         '''
         # Create a Image instance
         self.new_Image = Image(
-            caption='Python eve is Muriuki who wrote Python content for Moringa School')
+            caption='Python check 123')
 
     def test_instance(self):
         '''
@@ -51,7 +51,7 @@ class Post(TestCase):
         '''
         # Create a Comment instance
         self.new_comment = Comment(
-            comment_content='Python eve is Muriuki who wrote Python content for Moringa School')
+            comment_content='Python check 123')
 
     def test_instance(self):
         '''
@@ -60,7 +60,13 @@ class Post(TestCase):
         self.assertTrue(isinstance(self.new_comment, Comment))
 
 class Business(self):
-
+    def setUp(self):
+        '''
+        Method that creates an instance of Profile class
+        '''
+        # Create a Business instance
+        self.new_bus = Bus(
+            name='Salesman')
     @classmethod
     def get_specific_bus(cls,id):
         '''

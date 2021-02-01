@@ -1,7 +1,4 @@
 from django.db import models
-
-# Create your models here.
-
 from django.contrib.auth.models import User
 
 class NeighbourHood(models.Model):
@@ -26,6 +23,7 @@ class NeighbourHood(models.Model):
 
     def delete_hood(self):
         self.delete() 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
     profile_picture = models.ImageField(upload_to='images/')
@@ -41,15 +39,6 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
-class Business(models.Model):
-    name = models.CharField(max_length=120)
-    email = models.EmailField(max_length=254)
-    description = models.TextField(blank=True)
-    
-    @classmethod
-    def get_specific_bus(cls,id):
-        bus = cls.objects.get(id=id)
-        return bus
 
 class Post(models.Model):
     title = models.CharField(max_length=120, null=True)
@@ -65,6 +54,17 @@ class Post(models.Model):
 
     def delete_post(self):
         self.delete() 
+
+class Business(models.Model):
+    name = models.CharField(max_length=120)
+    email = models.EmailField(max_length=254)
+    description = models.TextField(blank=True)
+    # neighbourhood = models.ForeignKey(NeighbourHood, on_delete=models.CASCADE, related_name='business')
+    # user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='owner')
+    @classmethod
+    def get_specific_bus(cls,id):
+        bus = cls.objects.get(id=id)
+        return bus
 
 class Comment(models.Model):
     posted_by=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
